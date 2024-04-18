@@ -1,6 +1,12 @@
 import './App.css'
-import Button from './components/Button/Button.jsx'
 import JournalItem from "./components/JournalItem/JournalItem.jsx";
+import CardButton from "./components/CardButton/CardButton.jsx";
+import LeftPanel from "./layout/LeftPanel/LeftPanel.jsx";
+import Body from "./layout/Body/Body.jsx";
+import Header from "./components/Header/Header.jsx";
+import JournalList from "./components/JournalList/JournalList.jsx";
+import JournalAddButton from "./components/JournalAddButton/JournalAddButton.jsx";
+
 
 function App() {
     const data = [
@@ -17,20 +23,31 @@ function App() {
     ]
 
   return (
-   <>
-     <h1>Suchka ti kak razgovarivaesh</h1>
-       <Button/>
-       <JournalItem
-           title={data[0].title}
-           date={data[0].date}
-           text={data[0].text}
-       />
-       <JournalItem
-           title={data[1].title}
-           date={data[1].date}
-           text={data[1].text}
-       />
-   </>
+   <div className={'app'}>
+       <LeftPanel>
+           <Header/>
+           <JournalList>
+               <JournalAddButton/>
+               <CardButton>
+                   <JournalItem
+                       title={data[0].title}
+                       date={data[0].date}
+                       text={data[0].text}
+                   />
+               </CardButton>
+               <CardButton>
+                   <JournalItem
+                       title={data[1].title}
+                       date={data[1].date}
+                       text={data[1].text}
+                   />
+               </CardButton>
+           </JournalList>
+       </LeftPanel>
+       <Body>
+            <h2>Body</h2>
+       </Body>
+   </div>
 )
 }
 
