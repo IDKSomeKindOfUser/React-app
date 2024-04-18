@@ -2,9 +2,7 @@ import './Header.css'
 
 function Header() {
     return (
-        <div className={'header'}>
-            <>Logo</>
-        </div>
+            <img className={'logo'} src="/public/logo.svg" alt="logo"/>
     )
 }
 
