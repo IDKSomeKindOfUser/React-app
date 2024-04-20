@@ -6,6 +6,7 @@ import Body from "./layout/Body/Body.jsx";
 import Header from "./components/Header/Header.jsx";
 import JournalList from "./components/JournalList/JournalList.jsx";
 import JournalAddButton from "./components/JournalAddButton/JournalAddButton.jsx";
+import JournalForm from "./components/JournalForm/JournalForm.jsx";
 
 
 function App() {
@@ -20,7 +21,9 @@ function App() {
             text: 'Pizda blyat',
             date: new Date(),
         }
-    ]
+    ];
+
+
 
   return (
    <div className={'app'}>
@@ -45,7 +48,7 @@ function App() {
            </JournalList>
        </LeftPanel>
        <Body>
-            <h2>Body</h2>
+           <JournalForm/>
        </Body>
    </div>
 )
