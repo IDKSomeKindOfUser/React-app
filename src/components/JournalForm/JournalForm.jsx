@@ -3,6 +3,7 @@ import {useState} from "react";
 import Button from "../Button/Button.jsx";
 import classNames from "classnames";
 
+// eslint-disable-next-line react/prop-types
 function JournalForm({onSubmit}) {
     const [formValidState, setFormValidState] = useState({
         title: true,
