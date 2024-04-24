@@ -1,18 +1,22 @@
-img{
+img {
     width: 25px;
 }
-input, textarea{
+
+input, textarea {
     color: white;
 }
+
 :focus {
     outline: none;
 }
-.journal-form{
+
+.journal-form {
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
-.input{
+
+.input {
     padding: 5px 0 7px;
     border: 1px solid transparent;
     border-bottom: 1px solid white;
@@ -22,14 +26,17 @@ input, textarea{
     font-weight: 600;
     transition: 0.4s;
 }
-.input:focus{
+
+.input:focus {
     padding: 5px 14px 7px;
     transition: 0.4s;
 }
+
 .input::placeholder {
     font-size: 16px;
 }
-.input~.focus-border {
+
+.input ~ .focus-border {
     position: absolute;
     height: 0;
     bottom: 0;
@@ -38,13 +45,15 @@ input, textarea{
     transition: 0.4s;
     z-index: -1;
 }
-.input:focus~.focus-border {
-     transition: 0.4s;
-     height: 36px;
-     border: 2px solid white;
-     z-index: 1;
- }
-.input~.focus-border-date {
+
+.input:focus ~ .focus-border {
+    transition: 0.4s;
+    height: 36px;
+    border: 2px solid white;
+    z-index: 1;
+}
+
+.input ~ .focus-border-date {
     position: absolute;
     height: 0;
     bottom: 0;
@@ -53,13 +62,15 @@ input, textarea{
     transition: 0.4s;
     z-index: -1;
 }
-.input:focus~.focus-border-date {
+
+.input:focus ~ .focus-border-date {
     transition: 0.4s;
     height: 34px;
     border: 2px solid white;
     z-index: 1;
 }
-.input-title{
+
+.input-title {
     padding: 5px 0 7px;
     border: 1px solid transparent;
     border-bottom: 1px solid white;
@@ -69,14 +80,17 @@ input, textarea{
     font-weight: 600;
     transition: 0.4s;
 }
-.input-title:focus{
+
+.input-title:focus {
     padding: 5px 14px 7px;
     transition: 0.4s;
 }
+
 .input-title::placeholder {
     font-size: 16px;
 }
-.input-title~.focus-border-title {
+
+.input-title ~ .focus-border-title {
     position: absolute;
     height: 0;
     bottom: 0;
@@ -85,26 +99,28 @@ input, textarea{
     transition: 0.4s;
     z-index: -1;
 }
-.input-title:focus~.focus-border-title {
+
+.input-title:focus ~ .focus-border-title {
     transition: 0.4s;
     height: 61px;
     border: 2px solid white;
     z-index: 1;
 }
 
-.form-label{
+.form-label {
     display: flex;
     align-items: center;
     gap: 20px;
     min-width: 150px;
 }
-.form-row{
+
+.form-row {
     position: relative;
     display: flex;
     align-items: center;
 }
 
-.invalid{
+.invalid {
     border: 1px solid red;
     border-radius: 5px;
     background: #6c1111;

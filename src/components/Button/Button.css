@@ -8,14 +8,16 @@
     border: none;
     color: inherit;
 }
+
 .accent:hover {
-     background-color: #100f68;
- }
+    background-color: #100f68;
+}
+
 .button:focus,
 .button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
 
-.accent{
+.accent {
     background: #312EB5;
 }

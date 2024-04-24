@@ -1,6 +1,5 @@
 import './JournalItem.css'
 
-// eslint-disable-next-line react/prop-types
 function JournalItem({title, date, post}) {
     const formatedDate = new Intl.DateTimeFormat('ru-RU').format(date);
 

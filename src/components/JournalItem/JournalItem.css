@@ -1,16 +1,17 @@
-.journal-item{
+.journal-item {
     border-radius: 3px;
     background: rgba(255, 255, 255, 0.03);
     color: #fff;
     padding: 20px;
 }
 
-.journal-item__header{
+.journal-item__header {
     font-size: 18px;
     font-weight: 600;
     line-height: 1.5;
 }
-.journal-item__body{
+
+.journal-item__body {
     display: flex;
     align-items: center;
     gap: 10px;

@@ -8,13 +8,12 @@ import JournalForm from "./components/JournalForm/JournalForm.jsx";
 import {useEffect, useState} from "react";
 
 
-
 function App() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
         const dataKey = JSON.parse(localStorage.getItem("KeyData"));
-        if (dataKey){
+        if (dataKey) {
             setData(dataKey.map(d => ({
                 ...d,
                 date: new Date(d.date),
@@ -23,8 +22,7 @@ function App() {
     }, []);
 
     useEffect(() => {
-        console.log(data);
-        if (data.length){
+        if (data.length) {
             localStorage.setItem('KeyData', JSON.stringify(data));
         }
     }, [data]);
@@ -55,3 +53,6 @@ function App() {
 }
 
 export default App
+
+
+
