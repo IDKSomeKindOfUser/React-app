@@ -1,0 +1,46 @@
+.input {
+    padding: 5px 0 7px;
+    border: 1px solid transparent;
+    border-bottom: 1px solid white;
+    background: none;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.4s;
+}
+
+.input-title {
+    font-size: 36px;
+}
+
+.input-title:focus {
+    padding: 5px 14px 7px;
+    transition: 0.4s;
+}
+
+.input-title::placeholder {
+    font-size: 16px;
+}
+
+.input-title ~ .focus-border-title {
+    position: absolute;
+    height: 0;
+    bottom: 0;
+    left: 0;
+    width: 394px;
+    transition: 0.4s;
+    z-index: -1;
+}
+
+.input-title:focus ~ .focus-border-title {
+    transition: 0.4s;
+    height: 61px;
+    border: 2px solid white;
+    z-index: 1;
+}
+
+.invalid {
+    border: 1px solid red;
+    border-radius: 5px;
+    background: #6c1111;
+}
