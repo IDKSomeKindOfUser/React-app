@@ -5,34 +5,29 @@ import Header from "./components/Header/Header.jsx";
 import JournalList from "./components/JournalList/JournalList.jsx";
 import JournalAddButton from "./components/JournalAddButton/JournalAddButton.jsx";
 import JournalForm from "./components/JournalForm/JournalForm.jsx";
-import {useEffect, useState} from "react";
+import {useLocalStorage} from "../hooks/use-localstorage.hooks.js";
+
+
+function mapData(datas){
+    if (!datas){
+        return []
+    }
+    return datas.map(i => ({
+        ...i,
+        date: new Date(i.date),
+    }))
+}
 
 
 function App() {
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        const dataKey = JSON.parse(localStorage.getItem("KeyData"));
-        if (dataKey) {
-            setData(dataKey.map(d => ({
-                ...d,
-                date: new Date(d.date),
-            })))
-        }
-    }, []);
-
-    useEffect(() => {
-        if (data.length) {
-            localStorage.setItem('KeyData', JSON.stringify(data));
-        }
-    }, [data]);
+    const [datas, setData] = useLocalStorage('KeyData');
 
     const addData = data => {
-        setData(oldData => [...oldData, {
+        setData([...mapData(datas), {
             post: data.post,
             title: data.title,
             date: new Date(data.date),
-            id: oldData.length > 0 ? Math.max(...oldData.map(i => i.id)) + 1 : 1,
+            id: datas.length > 0 ? Math.max(...datas.map(i => i.id)) + 1 : 1,
         }])
     }
 
@@ -41,7 +36,7 @@ function App() {
         <div className={'app'}>
             <LeftPanel>
                 <Header/>
-                <JournalList data={data}>
+                <JournalList data={mapData(datas)}>
                     <JournalAddButton/>
                 </JournalList>
             </LeftPanel>
