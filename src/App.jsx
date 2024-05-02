@@ -6,6 +6,7 @@ import JournalList from "./components/JournalList/JournalList.jsx";
 import JournalAddButton from "./components/JournalAddButton/JournalAddButton.jsx";
 import JournalForm from "./components/JournalForm/JournalForm.jsx";
 import {useLocalStorage} from "../hooks/use-localstorage.hooks.js";
+import {UserContextProvider} from "./context/user.context.jsx";
 
 
 function mapData(datas){
@@ -33,17 +34,19 @@ function App() {
 
 
     return (
-        <div className={'app'}>
-            <LeftPanel>
-                <Header/>
-                <JournalList data={mapData(datas)}>
-                    <JournalAddButton/>
-                </JournalList>
-            </LeftPanel>
-            <Body>
-                <JournalForm onSubmit={addData}/>
-            </Body>
-        </div>
+        <UserContextProvider>
+            <div className={'app'}>
+                <LeftPanel>
+                    <Header/>
+                    <JournalList data={mapData(datas)}>
+                        <JournalAddButton/>
+                    </JournalList>
+                </LeftPanel>
+                <Body>
+                    <JournalForm onSubmit={addData}/>
+                </Body>
+            </div>
+        </UserContextProvider>
     )
 }
 

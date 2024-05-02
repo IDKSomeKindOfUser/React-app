@@ -1,9 +1,10 @@
 import styles from './JournalForm.module.css'
-import {useEffect, useReducer, useRef} from "react";
+import {useContext, useEffect, useReducer, useRef} from "react";
 import Button from "../Button/Button.jsx";
 import classNames from "classnames";
 import {formReducer, INITIAL_STATE} from "./JournalForm.state.js";
 import Input from "../Input/Input.jsx";
+import {UserContext} from "../../context/user.context.jsx";
 
 
 // eslint-disable-next-line react/prop-types
@@ -13,6 +14,7 @@ function JournalForm({onSubmit}) {
     const titleRef = useRef();
     const dateRef = useRef();
     const postRef = useRef();
+    const { userId } = useContext(UserContext);
 
     const focusError = (isValid) => {
         switch (true){
@@ -60,6 +62,7 @@ function JournalForm({onSubmit}) {
     return (
         <>
             <form className={styles['journal-form']} onSubmit={addJournalItem}>
+                {userId}
                 <div className={styles['form-row']}>
                     <Input type="text" name='title' isValid={isValid.title} ref={titleRef} value={values.title} onChange={onChange} appearance={'title'}/>
                     <span className={styles['focus-border-title']}></span>
