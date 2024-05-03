@@ -25,8 +25,7 @@ function App() {
 
     const addData = data => {
         setData([...mapData(datas), {
-            post: data.post,
-            title: data.title,
+            ...data,
             date: new Date(data.date),
             id: datas.length > 0 ? Math.max(...datas.map(i => i.id)) + 1 : 1,
         }])
