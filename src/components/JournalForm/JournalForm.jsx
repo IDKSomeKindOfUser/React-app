@@ -8,7 +8,7 @@ import {UserContext} from "../../context/user.context.jsx";
 
 
 // eslint-disable-next-line react/prop-types
-function JournalForm({onSubmit}) {
+function JournalForm({onSubmit, itemsData, onDelete}) {
     const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
     const {isValid, isFormReadyToSubmit, values} = formState;
     const titleRef = useRef();
@@ -31,6 +31,14 @@ function JournalForm({onSubmit}) {
     }
 
     useEffect(() => {
+        if (!itemsData){
+            dispatchForm({type: 'CLEAR'});
+            dispatchForm({type: 'SET_VALUE', payload: { userId }});
+        }
+        dispatchForm({type: 'SET_VALUE', payload: { ...itemsData }})
+    }, [itemsData]);
+
+    useEffect(() => {
         let timerId;
         if (!isValid.date || !isValid.post || !isValid.title) {
             focusError(isValid);
@@ -47,8 +55,9 @@ function JournalForm({onSubmit}) {
         if (isFormReadyToSubmit) {
             onSubmit(values);
             dispatchForm({type: 'CLEAR'});
+            dispatchForm({type: 'SET_VALUE', payload: { userId }});
         }
-    }, [isFormReadyToSubmit, values, onSubmit]);
+    }, [isFormReadyToSubmit, values, onSubmit, userId]);
 
     useEffect(() => {
         dispatchForm({type: 'SET_VALUE', payload: { userId }})
@@ -63,19 +72,27 @@ function JournalForm({onSubmit}) {
         dispatchForm({type: 'SUBMIT'})
     }
 
+    const deleteJournalItem = () => {
+        onDelete(itemsData.id);
+        dispatchForm({type: 'CLEAR'});
+        dispatchForm({type: 'SET_VALUE', payload: { userId }});
+    }
+
     return (
         <>
             <form className={styles['journal-form']} onSubmit={addJournalItem}>
                 <div className={styles['form-row']}>
-                    <Input type="text" name='title' isValid={isValid.title} ref={titleRef} value={values.title} onChange={onChange} appearance={'title'}/>
-                    <span className={styles['focus-border-title']}></span>
+                    <Input appearance='title' type="text" name='title' isValid={isValid.title} ref={titleRef} value={values.title} onChange={onChange} placeholder={'Title'}/>
+                    {itemsData?.id && <button className={styles['delete']} type={'button'} onClick={deleteJournalItem}>
+                        <img src="/archive.svg" alt="Delete button"/>
+                    </button>}
                 </div>
                 <div className={styles['form-row']}>
                     <label htmlFor="date" className={styles['form-label']}>
                         <img src="/calendar.svg" alt="Calendar icon"/>
                         <span>Date</span>
                     </label>
-                    <Input type="date" name='date' isValid={isValid.date} id='date' ref={dateRef} onChange={onChange}  value={values.date}/>
+                    <Input type="date" name='date' isValid={isValid.date} id='date' ref={dateRef} onChange={onChange}  value={values.date ? new Date(values.date).toISOString().slice(0, 10) : ''}/>
                     <span className={styles['focus-border-date']}></span>
                 </div>
                 <div className={styles['form-row']}>
@@ -91,7 +108,7 @@ function JournalForm({onSubmit}) {
                               [styles['invalid']]: !isValid.post
                           })}>
                 </textarea>
-                <Button text={'Save'}/>
+                <Button>Save</Button>
             </form>
         </>
     )
