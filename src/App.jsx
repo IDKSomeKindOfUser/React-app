@@ -22,6 +22,7 @@ function mapData(datas) {
 
 
 function App() {
+    localStorage.setItem('KeyData', '[]');
     const [datas, setData] = useLocalStorage('KeyData', []);
     const [selectedItem, setSelectedItem] = useState(null);
 
